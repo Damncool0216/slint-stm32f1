@@ -7,10 +7,14 @@ Small demo using [Slint](https://github.com/slint-ui/slint) on STM32F1
 - Hardware: STM32F103ZE 0.96oled
 - rustc 1.69.0
 - [cargo embed](https://github.com/probe-rs/probe-rs/tree/master/cargo-embed)
-  
-### Flashing:
+
+### build and flash:
 ```
-cargo +nightly embed --release
+cargo embed --release
+```
+### run with rtt
+```
+cargo embed --release --features rtt -- with_rtt
 ```
 
 
