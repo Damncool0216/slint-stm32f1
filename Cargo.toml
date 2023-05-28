@@ -4,7 +4,7 @@ edition = "2018"
 readme = "README.md"
 name = "stm32-slint"
 version = "0.1.0"
-resolver = "2"  # important
+resolver = "2"  # 
 build = "build.rs"
 
 [dependencies]
