@@ -1,24 +1,20 @@
 [package]
 authors = ["Damncool0216 <damncool0216@outlook.com>"]
-edition = "2018"
+edition = "2021"
 readme = "README.md"
-name = "stm32-slint"
+name = "slint-stm32f1"
 version = "0.1.0"
-resolver = "2"  # 
+# resolver = "2"  # 
 build = "build.rs"
 
 [dependencies]
 cortex-m = "0.7.0"
 cortex-m-rt = "0.7.2"
-# cortex-m-semihosting = "0.5.0"
-# panic-halt = "0.2.0"
 
 ssd1306 = "0.7.1"
-
 embedded-graphics-core = "0.3"
 
 embedded-hal = "0.2"
-# embedded-alloc = "0.5.0"
 alloc-cortex-m = "0.4.2"
 
 [dependencies.rtt-target]
@@ -28,7 +24,6 @@ features = ["cortex-m"]
 [dependencies.stm32f1xx-hal]
 version = "0.10.0"
 features = ["rt", "stm32f103", "high"]
-
 
 [dependencies.slint]
 version = "1.0.2"
@@ -42,7 +37,7 @@ slint-build = {version = "1.0.2"}
 # default = ["simulator"]
 
 [[bin]]
-name = "stm32-slint"
+name = "slint-stm32f1"
 test = false
 bench = false
 
