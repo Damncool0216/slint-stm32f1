@@ -1,0 +1,63 @@
+// Copyright © SixtyFPS GmbH <info@slint-ui.com>
+// SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-Slint-commercial
+
+import { Carousel } from "carousel.slint";
+import { Card } from "card.slint";
+import { Theme } from "theme.slint";
+import { TitleLabel } from "title_label.slint";
+
+MainWindow := Window {
+
+    property<[{ title: string, image: image}]> navigation-items: [
+       { title: "设置", image: @image-url("svg/settings_black.svg") },
+       { title: "家", image: @image-url("svg/home_black.svg") },
+       { title: "关于", image: @image-url("svg/info_black.svg") },
+       { title: "Settings", image: @image-url("svg/settings_black.svg") },
+       { title: "Home", image: @image-url("svg/home_black.svg") },
+       { title: "About", image: @image-url("svg/info_black.svg") },
+    ];
+    property <int> selected-index: 2;
+
+    title: "Carousel example";
+    background: Theme.window-background;
+    padding: Theme.spacing-regular;
+    forward-focus: carousel;
+    default-font-family: Theme.font-family;
+    default-font-size: 19px;
+
+    VerticalLayout {
+        Rectangle {
+            height: 20px;
+
+            Text {
+                width: 100%;
+                height: 100%;
+                color: yellow;
+                text: navigation-items[selected-index].title;
+                horizontal-alignment: center;
+                vertical-alignment: center;
+                font-family: Theme.font-family;
+                //font-weight: Theme.font-weight-bold;
+            }
+
+        }
+        carousel := Carousel {
+            vertical-stretch: 1;
+            itemWidth: height * 0.8;
+            count: navigation-items.length;
+            selected-index <=> root.selected-index;
+            spacing: itemWidth / 16;
+
+            for item[index] in navigation-items : Card {
+                itemWidth: carousel.itemWidth;
+
+                is-selected: index == selected-index;
+                title: item.title;
+                image-source: item.image;
+                y: (parent.height - height) / 2;
+
+                clicked => { selected-index = index; }
+            }
+        }
+    }
+}

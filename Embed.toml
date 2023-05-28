@@ -1,0 +1,38 @@
+
+[default]
+
+[default.flashing]
+do_chip_erase = false
+enabled = true
+restore_unwritten_bytes = false
+
+[default.gdb]
+enabled = false
+gdb_connection_string = "127.0.0.1:1337"
+
+[default.general]
+chip = "STM32F103ZE"
+chip_descriptions = []
+connect_under_reset = false
+log_level = "WARN"
+
+[default.probe]
+protocol = "Swd"
+
+[default.reset]
+enabled = true
+halt_afterwards = false
+
+[default.rtt]
+channels = []
+enabled = false
+log_enabled = false
+log_path = "./logs"
+show_timestamps = true
+timeout = 3000
+
+[with_rtt.rtt]
+enabled = true
+
+[with_gdb.gdb]
+enabled = true

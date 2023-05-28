@@ -1,0 +1,63 @@
+[package]
+authors = ["Damncool0216 <damncool0216@outlook.com>"]
+edition = "2018"
+readme = "README.md"
+name = "stm32-slint"
+version = "0.1.0"
+resolver = "2"  # important
+build = "build.rs"
+
+[dependencies]
+cortex-m = "0.7.0"
+cortex-m-rt = "0.7.2"
+# cortex-m-semihosting = "0.5.0"
+# panic-halt = "0.2.0"
+
+ssd1306 = "0.7.1"
+
+embedded-graphics-core = "0.3"
+
+embedded-hal = "0.2"
+# embedded-alloc = "0.5.0"
+alloc-cortex-m = "0.4.2"
+
+[dependencies.rtt-target]
+version = "0.3.1"
+features = ["cortex-m"]
+
+[dependencies.stm32f1xx-hal]
+version = "0.10.0"
+features = ["rt", "stm32f103", "high"]
+
+
+[dependencies.slint]
+version = "1.0.2"
+default-features = false
+features = ["compat-1-0", "unsafe-single-threaded", "libm"]
+[build-dependencies]
+slint-build = {version = "1.0.2"}
+
+# [features]
+# simulator = ["slint/renderer-winit-software", "slint/backend-winit", "slint/std"]
+# default = ["simulator"]
+
+[[bin]]
+name = "stm32-slint"
+test = false
+bench = false
+
+[profile.release]
+codegen-units = 1 # better optimizations
+debug = true # symbols are nice and they don't increase the size on Flash
+lto = true # better optimizations
+opt-level = "z"
+# panic = "abort"
+
+[profile.dev.package."*"]
+codegen-units = 1 # better optimizations
+opt-level = "z"
+
+
+[features]
+# default = ["rtt"]
+rtt = []
